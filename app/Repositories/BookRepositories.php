@@ -11,41 +11,41 @@ class BookRepositories implements BookInterface
 
     public function all(){
 
-        if(Auth::user()->user_role == 1){
-            return Book::orderBy('priority','asc')->paginate(6);
-        }elseif(Auth::user()->user_role == 2){
-            return Book::where('created_by',Auth::user()->id)->orderBy('priority','asc')->paginate(6);
-        }
+       return Book::orderBy('id','asc')->paginate(6);
     }
 
     public function store(array $data){
 
         $Book = new Book();
-        $Book->name  = $data['name'];
-        $Book->slug = Str::slug($data['name'] ?? '');
-        $Book->priority  = $data['priority'];
-        $Book->created_by = auth()->id();
+        $Book->title  = $data['title'];
+        $Book->isbn  = $data['isbn'];
+        $Book->author_id  = $data['author_id'];
+        $Book->published_date  = $data['published_date'];
+        $Book->available_copy  = $data['available_copy'];
+        $Book->total_copy  = $data['total_copy'];
         $Book->save();
 
     }
 
-    public function getData($slug){
-        return Book::where('slug',$slug)->first();
+    public function getData($id){
+        return Book::find($id);
     }
 
-    public function update(array $data,$slug){
+    public function update(array $data,$id){
 
-        $Book =  Book::where('slug',$slug)->first();
-        $Book->name  = $data['name'];
-        $Book->slug = Str::slug($data['name'] ?? '');
-        $Book->priority  = $data['priority'];
-        $Book->created_by = auth()->id();
+        $Book =  Book::where('id',$id)->first();
+        $Book->title  = $data['title'];
+        $Book->isbn  = $data['isbn'];
+        $Book->author_id  = $data['author_id'];
+        $Book->published_date  = $data['published_date'];
+        $Book->available_copy  = $data['available_copy'];
+        $Book->total_copy  = $data['total_copy'];
         $Book->save();
     }
 
-    public function delete($slug){
+    public function delete($id){
 
-        $Book = Book::where('slug',$slug)->first();
+        $Book = Book::find($id);
         if(!empty($Book)){
             $Book->delete();
         }

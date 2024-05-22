@@ -22,7 +22,8 @@ class AuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'   =>  'required|max:100',
+            'bio'  =>   'required|max:200'
         ];
     }
 }

@@ -22,7 +22,12 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'   =>  'required|max:180',
+            'isbn'  =>   'required|max:200',
+            'author_id'  =>   'required',
+            'published_date'  =>   'required',
+            'available_copy'  =>   'required',
+            'total_copy'  =>   'required',
         ];
     }
 }

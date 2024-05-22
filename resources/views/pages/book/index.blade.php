@@ -30,10 +30,9 @@
 
                                     @foreach($books as $key=> $item)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->isbn }}</td>
-                                            <td>{{ $item->author_id }}</td>
+                                            <td>{{ $item->author->name }}</td>
                                             <td>{{ $item->published_date }}</td>
                                             <td>{{ $item->available_copy }}</td>
                                             <td>{{ $item->total_copy }}</td>
