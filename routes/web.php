@@ -1,14 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\BookController;
+use \App\Http\Controllers\BlogController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontendController;
 use \App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserDashboardController;
-use Illuminate\Support\Facades\Artisan;
-use \App\Http\Controllers\BlogController;
 use App\Http\Controllers\ForgetPasswordController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +65,34 @@ Route::middleware(['auth:web'])->group(function(){
         Route::get('/edit/{slug}',[BlogController::class,'edit'])->name('edit');
         Route::post('/update/{slug}',[BlogController::class,'update'])->name('update');
         Route::get('/delete/{slug}',[BlogController::class,'delete'])->name('delete');
+    });
+
+    //Author
+    Route::prefix('authors')->name('author.')->group(function (){
+        Route::get('/',[AuthorController::class,'index'])->name('index');
+        Route::get('/create',[AuthorController::class,'create'])->name('create');
+        Route::post('/store',[AuthorController::class,'store'])->name('store');
+        Route::get('/edit/{id}',[AuthorController::class,'edit'])->name('edit');
+        Route::post('/update/{id}',[AuthorController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[AuthorController::class,'delete'])->name('delete');
+    });
+    //Book
+    Route::prefix('books')->name('book.')->group(function (){
+        Route::get('/',[BookController::class,'index'])->name('index');
+        Route::get('/create',[BookController::class,'create'])->name('create');
+        Route::post('/store',[BookController::class,'store'])->name('store');
+        Route::get('/edit/{id}',[BookController::class,'edit'])->name('edit');
+        Route::post('/update/{id}',[BookController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[BookController::class,'delete'])->name('delete');
+    });
+    //Member
+    Route::prefix('members')->name('member.')->group(function (){
+        Route::get('/',[MemberController::class,'index'])->name('index');
+        Route::get('/create',[MemberController::class,'create'])->name('create');
+        Route::post('/store',[MemberController::class,'store'])->name('store');
+        Route::get('/edit/{id}',[MemberController::class,'edit'])->name('edit');
+        Route::post('/update/{id}',[MemberController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[MemberController::class,'delete'])->name('delete');
     });
 });
 

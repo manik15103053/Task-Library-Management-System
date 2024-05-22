@@ -16,6 +16,18 @@ class RepositoriesServiceProvider extends ServiceProvider
             'App\Repositories\Interface\CategoryInterface',
             'App\Repositories\CategoryRepositories',
         );
+        $this->app->bind(
+            'App\Repositories\Interface\AuthorInterface',
+            'App\Repositories\AuthorRepositories',
+        );
+        $this->app->bind(
+            'App\Repositories\Interface\BookInterface',
+            'App\Repositories\BookRepositories',
+        );
+        $this->app->bind(
+            'App\Repositories\Interface\MemberInterface',
+            'App\Repositories\MemberRepositories',
+        );
 
     }
 }
