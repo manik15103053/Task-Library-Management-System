@@ -16,6 +16,7 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
+                                    <th scope="col">No.</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Bio</th>
                                     <th scope="col">Action</th>

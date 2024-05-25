@@ -28,6 +28,10 @@ class RepositoriesServiceProvider extends ServiceProvider
             'App\Repositories\Interface\MemberInterface',
             'App\Repositories\MemberRepositories',
         );
+        $this->app->bind(
+            'App\Repositories\Interface\BorrowInterface',
+            'App\Repositories\BorrowRepositories',
+        );
 
     }
 }

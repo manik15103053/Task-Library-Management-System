@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use \App\Http\Controllers\BlogController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
@@ -93,6 +94,16 @@ Route::middleware(['auth:web'])->group(function(){
         Route::get('/edit/{id}',[MemberController::class,'edit'])->name('edit');
         Route::post('/update/{id}',[MemberController::class,'update'])->name('update');
         Route::get('/delete/{id}',[MemberController::class,'delete'])->name('delete');
+    });
+
+    //Borrow-book
+    Route::prefix('borrow-book')->name('borrow.')->group(function (){
+        Route::get('/',[BorrowController::class,'index'])->name('index');
+        Route::get('/create',[BorrowController::class,'create'])->name('create');
+        Route::post('/store',[BorrowController::class,'store'])->name('store');
+        Route::get('/edit/{id}',[BorrowController::class,'edit'])->name('edit');
+        Route::post('/update/{id}',[BorrowController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[BorrowController::class,'delete'])->name('delete');
     });
 });
 

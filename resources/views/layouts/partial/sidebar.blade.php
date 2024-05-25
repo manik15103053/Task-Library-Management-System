@@ -5,6 +5,7 @@
     <a href="{{ route('author.index') }}" class="list-group-item list-group-item-action {{ Request::routeIs('author*') ? 'active' : '' }}">Author</a>
     <a href="{{ route('book.index') }}" class="list-group-item list-group-item-action {{ Request::routeIs('book*') ? 'active' : '' }}">Book</a>
     <a href="{{ route('member.index') }}" class="list-group-item list-group-item-action {{ Request::routeIs('member*') ? 'active' : '' }}">Member</a>
+    <a href="{{ route('borrow.index') }}" class="list-group-item list-group-item-action {{ Request::routeIs('borrow*') ? 'active' : '' }}">Borrow Book</a>
     @if(Auth::user()->user_role == 1)
     <a href="{{ route('allUser') }}" class="list-group-item list-group-item-action {{ Request::routeIs('allUser') ? 'active' : '' }}">User</a>
     @endif
