@@ -13,6 +13,7 @@ use App\Http\Controllers\FrontendController;
 use \App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,16 @@ Route::middleware(['auth:web'])->group(function(){
     Route::get('/dashboard',[UserDashboardController::class,'dashboard'])->name('dashboard');
     Route::get('/users',[UserDashboardController::class,'allUser'])->name('allUser');
     Route::get('/logout', [AuthController::class,'logout'])->name('logout');
+
+    //Role
+    Route::prefix('roles')->name('role.')->group(function (){
+        Route::get('/',[RoleController::class,'index'])->name('index');
+        Route::get('/create',[RoleController::class,'create'])->name('create');
+        Route::post('/store',[RoleController::class,'store'])->name('store');
+        Route::get('/edit/{id}',[RoleController::class,'edit'])->name('edit');
+        Route::post('/update/{id}',[RoleController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[RoleController::class,'delete'])->name('delete');
+    });
 
     //Category
     Route::prefix('categories')->name('category.')->group(function (){
