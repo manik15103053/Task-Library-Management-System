@@ -50,7 +50,6 @@
                                 </tbody>
                             </table>
                         </div>
-                       {{-- {{ $books->links() }} --}}
                     </div>
                 </div>
             </div>
