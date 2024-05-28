@@ -9,7 +9,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="title float-left">All Member</h4>
+                        @can('book.create')
                         <a class="btn btn-info float-right" href="{{ route('book.create') }}">Add New</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -32,13 +34,17 @@
                                         <tr>
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->isbn }}</td>
-                                            <td>{{ $item->author->name }}</td>
+                                            <td>{{ $item->author->name ?? "" }}</td>
                                             <td>{{ $item->published_date }}</td>
                                             <td>{{ $item->available_copy }}</td>
                                             <td>{{ $item->total_copy }}</td>
                                             <td>
-                                                <a href="{{ route('book.edit',$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit text-white"></i></a>
-                                                <a href="{{ route('book.delete',$item->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash text-white" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @can('book.edit')
+                                                <a href="{{ route('book.edit',$item->id) }}" class=""><i class="fa fa-edit text-success"></i></a>
+                                                @endcan
+                                                @can('book.delete')
+                                                <a href="{{ route('book.delete',$item->id) }}" class=""><i class="fa fa-trash text-danger" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

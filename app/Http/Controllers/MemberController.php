@@ -17,6 +17,11 @@ class MemberController extends Controller
     public function __construct(MemberRepositories $Member)
     {
             $this->Member = $Member;
+
+            $this->middleware('can:member.index')->only(['index']);
+            $this->middleware('can:member.create')->only(['create', 'store']);
+            $this->middleware('can:member.edit')->only(['edit', 'update']);
+            $this->middleware('can:member.delete')->only(['delete']);
     }
 
     //Show all Members in read operation

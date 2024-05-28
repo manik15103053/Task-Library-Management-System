@@ -16,7 +16,12 @@ class AuthorController extends Controller
     //Use Access Modifier and maintain the all functionality in repositories interface
     public function __construct(AuthorRepositories $Author)
     {
-            $this->Author = $Author;
+        $this->Author = $Author;
+
+        $this->middleware('can:author.index')->only(['index']);
+        $this->middleware('can:author.create')->only(['create', 'store']);
+        $this->middleware('can:author.edit')->only(['edit', 'update']);
+        $this->middleware('can:author.delete')->only(['delete']);
     }
 
     //Show all Authors in read operation

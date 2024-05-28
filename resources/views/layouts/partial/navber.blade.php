@@ -4,9 +4,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('frontend.index') }}">Home</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{  route('frontend.blog') }}">All Blog</a>
-            </li>
+            </li> --}}
             @auth <!-- Only show Logout when the user is logged in -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
@@ -19,9 +19,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">Login</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}">Registration</a>
-            </li>
+            </li> --}}
             @endguest
         </ul>
 

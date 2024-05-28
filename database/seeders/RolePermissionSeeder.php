@@ -15,26 +15,97 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create the admin role
         $role = Role::create(['name' => 'admin']);
 
+        // Define permissions array
         $permissions = [
-            ['name' => 'user list'],
-            ['name' => 'create usre'],
-            ['name' => 'edit usre'],
-            ['name' => 'delete usre'],
-            ['name' => 'role list'],
-            ['name' => 'create role'],
-            ['name' => 'edit role'],
-            ['name' => 'delete role'],
+            [
+                'module_name' => 'Manage-Dashboard',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'dashboard',
+                ]
+            ],
+            [
+                'module_name' => 'Manage-User',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'user.index',
+                    'user.create',
+                    'user.edit',
+                    'user.delete',
+                ]
+            ],
+            [
+                'module_name' => 'Manage-Role',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'role.index',
+                    'role.create',
+                    'role.edit',
+                    'role.delete',
+                ]
+            ],
+            [
+                'module_name' => 'Manage-Author',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'author.index',
+                    'author.create',
+                    'author.edit',
+                    'author.delete',
+                ]
+            ],
+            [
+                'module_name' => 'Manage-Book',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'book.index',
+                    'book.create',
+                    'book.edit',
+                    'book.delete',
+                ]
+            ],
+            [
+                'module_name' => 'Manage-Member',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'member.index',
+                    'member.create',
+                    'member.edit',
+                    'member.delete',
+                ]
+            ],
+            [
+                'module_name' => 'Manage-Borrow',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'borrow.index',
+                    'borrow.create',
+                    'borrow.edit',
+                    'borrow.delete',
+                ]
+            ],
         ];
 
-        foreach($permissions as $item){
-            Permission::create($item);
+        // Create permissions and assign to role
+        foreach ($permissions as $module) {
+            foreach ($module['permissions'] as $permission) {
+                Permission::create([
+                    'name' => $permission,
+                    'guard_name' => $module['guard_name'],
+                    'module_name' => $module['module_name'],
+                ]);
+            }
         }
 
+        // Sync all permissions to the admin role
         $role->syncPermissions(Permission::all());
 
+        // Assign admin role to the first user
         $user = User::first();
         $user->assignRole($role);
     }
+
 }

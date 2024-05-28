@@ -40,14 +40,14 @@
                                     <div class="col-xl-12 col-lg-12 col-md-6 mb-2">
                                         <table class="table  table-borderless card" style="height: 100%; border: 1px solid #DEDEEB">
                                             <tr class="row pl-3">
-                                                <td  style="vertical-align:top">{{ucfirst($index)}}</td>
+                                                <td width="30%" style="vertical-align:top">{{ucfirst($index)}}</td>
                                                 <td width="30%" style="vertical-align:top">
                                                     <div class="custom-control custom-checkbox mb-1">
                                                         <input type="checkbox" class="custom-control-input {{$index}}" onclick="checkPermissionByGroupName('role_{{$loop->iteration}}_management_td', this) "  id="exampleCheckbox{{$index}}" value="{{$index}}">
                                                         <label class="custom-control-label" for="exampleCheckbox{{$index}}">Select All</label>
                                                     </div>
                                                 </td>
-                                                <td  style="vertical-align:top" class="role_{{$loop->iteration}}_management_td">
+                                                <td width="40%" style="vertical-align:top" class="role_{{$loop->iteration}}_management_td">
                                                     @foreach($modules as $permission)
                                                         <div class="custom-control custom-checkbox mb-1">
                                                             <input type="checkbox" name="permissions[]" {{$role->hasPermissionTo($permission->id) ? 'checked': ''}}

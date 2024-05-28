@@ -1,34 +1,22 @@
 @extends('layouts.master')
 
 @section('main-content')
-    @if($categories->isNotEmpty())
-    <h4 class="mt-5 mb-3">Category</h4>
-        <div class="row">
-            @foreach($categories as $item)
-                <div class="col-sm-2 mb-4">
-                    <a href="{{ route('frontend.postByCat',$item->slug) }}" class="card category-custom-card">
-                        <div class="card-body">
-                            <h5 class="card-title custom-title text-center">{{ $item->name ?? "" }}</h5>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    @endif
-        <!----end Card Item---->
-        <!-----Blog Post----->
-    @if($blogs->isNotEmpty())
-        <h4 class="mt-5">Blog Post</h4>
+ 
+        <!-----Book----->
+    @if($books->isNotEmpty())
+        <h4 class="mt-5">Books</h4>
         <div class="row mb-5">
-            @foreach($blogs->take(6) as $blog)
+            @foreach($books->take(10) as $item)
                 <div class="col-md-4">
                     <div class="card mt-3">
                         <div class="card_image">
-                            <img src="{{ asset($blog->image) }}" class="card-img-top" style="width: 100%;" alt="...">
+                            <img src="https://uploads.sitepoint.com/wp-content/uploads/2023/02/1676244061best-html-books.jpg" class="card-img-top" style="width: 100%;" alt="...">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $blog->title ?? "" }}</h5>
-                            <p class="card-text">{{ Str::limit($blog->text_content,65,'..') ?? "" }}.</p>
+                            <h5 class="card-title">{{ $item->title ?? "" }}</h5>
+                            <h6 class="card-title ">Author: <strong class="text-success">{{ $item->author->name ?? "" }}</strong></h6>
+                            <h6 class="card-title">Publication Date: <strong class="text-primary">{{ date('d M Y',strtotime($item->published_date)) ?? "" }}</strong></h6>
+                            {{-- <p class="card-text">{{ Str::limit($blog->text_content,65,'..') ?? "" }}.</p> --}}
 
                         </div>
                     </div>

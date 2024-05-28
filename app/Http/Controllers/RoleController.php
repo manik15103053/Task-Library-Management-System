@@ -8,13 +8,21 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:role.index')->only(['index']);
+        $this->middleware('can:role.create')->only(['create', 'store']);
+        $this->middleware('can:role.edit')->only(['edit', 'update']);
+        $this->middleware('can:role.delete')->only(['delete']);
+    }
+
     public function index(){
         $data['roles'] = Role::with('permissions')->latest()->get();
         return view('pages.role.index',$data);
     }
 
     public function create(){
-        $data['permissions'] = Permission::all()->groupBy('module');
+        $data['permissions'] = Permission::all()->groupBy('module_name');
         return view('pages.role.create',$data);
     }
 
@@ -38,7 +46,7 @@ class RoleController extends Controller
 
     public function edit($id){
 
-        $data['permissions'] = Permission::all()->groupBy('module');
+        $data['permissions'] = Permission::all()->groupBy('module_name');
         $data['role'] = Role::with('permissions')->find($id);
         return view('pages.role.edit',$data);
     }

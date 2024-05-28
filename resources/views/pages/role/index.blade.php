@@ -9,7 +9,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="title float-left">All Roles</h4>
+                        @can('role.create')
                         <a class="btn btn-info float-right" href="{{ route('role.create') }}">Add New</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -36,8 +38,12 @@
                                             </td>
                                          
                                             <td>
+                                                @can('role.edit')
                                                 <a href="{{ route('role.edit',$role->id) }}" class=""><i class="fa fa-edit text-success"></i></a>
+                                                @endcan
+                                                @can('role.delete')
                                                 <a href="{{ route('role.delete',$role->id) }}" class=""><i class="fa fa-trash text-danger" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

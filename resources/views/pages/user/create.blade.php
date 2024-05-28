@@ -8,19 +8,19 @@
             <div class="container">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="title float-left">Member</h4>
-                        <a class="btn btn-info float-right" href="{{ route('book.index') }}">Back</a>
+                        <h4 class="title float-left">User</h4>
+                        <a class="btn btn-info float-right" href="{{ route('user.index') }}">Back</a>
                     </div>
-                    <form action="{{ route('book.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="title">Title <small class="text-danger">*</small></label>
-                                        <input type="text" class="form-control" id="" name="title" value="{{ old('title') }}">
+                                        <label for="title">Name <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" id="" name="name" value="{{ old('name') }}">
                                         <span class="text-danger">
-                                            @error('title')
+                                            @error('name')
                                             {{ $message }}
                                             @enderror
                                         </span>
@@ -28,10 +28,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="title">ISBN<small class="text-danger">*</small></label>
-                                        <input type="text" class="form-control" id="" name="isbn" value="{{ old('isbn') }}">
+                                        <label for="title">Username <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" id="" name="username" value="{{ old('username') }}">
                                         <span class="text-danger">
-                                            @error('isbn')
+                                            @error('username')
                                             {{ $message }}
                                             @enderror
                                         </span>
@@ -39,54 +39,43 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Author Name <small class="text-danger">*</small></label>
-                                        <select name="author_id" id="author_id" class="form-control"  >
-                                            <option  disabled>Select One</option>
-                                            @foreach($authors as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
+                                        <label for="title">Email <small class="text-danger">*</small></label>
+                                        <input type="email" class="form-control" id="" name="email" value="{{ old('email') }}">
+                                        <span class="text-danger">
+                                            @error('email')
+                                            {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">Password <small class="text-danger">*</small></label>
+                                        <input type="password" class="form-control" id="" name="password" value="{{ old('password') }}">
+                                        <span class="text-danger">
+                                            @error('password')
+                                            {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">User Role <small class="text-danger">*</small></label>
+                                        <select name="roles[]" id="" class="form-control select2" multiple>
+                                            <option disabled>Assign Role</option> 
+                                            @foreach ($roles as $item)
+                                                <option value="{{  $item->id }}">{{  $item->name }}</option>
+                                            @endforeach   
                                         </select>
                                         <span class="text-danger">
-                                            @error('author_id')
+                                            @error('roles')
                                             {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="title">Published Date<small class="text-danger">*</small></label>
-                                        <input type="date" class="form-control" id="" name="published_date" value="{{ old('published_date') }}">
-                                        <span class="text-danger">
-                                            @error('published_date')
-                                            {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="title">Available Copy <small class="text-danger">*</small></label>
-                                        <input type="number" class="form-control" id="" name="available_copy" value="{{ old('available_copy') }}">
-                                        <span class="text-danger">
-                                            @error('available_copy')
-                                            {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="title">Total Copy <small class="text-danger">*</small></label>
-                                        <input type="number" class="form-control" id="" name="total_copy" value="{{ old('total_copy') }}">
-                                        <span class="text-danger">
-                                            @error('total_copy')
-                                            {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-info">Submit</button>
                                     </div>

@@ -17,6 +17,11 @@ class BookController extends Controller
     public function __construct(BookRepositories $Book)
     {
             $this->Book = $Book;
+
+            $this->middleware('can:book.index')->only(['index']);
+            $this->middleware('can:book.create')->only(['create', 'store']);
+            $this->middleware('can:book.edit')->only(['edit', 'update']);
+            $this->middleware('can:book.delete')->only(['delete']);
     }
 
     //Show all Books in read operation

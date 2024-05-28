@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Author Name <small class="text-danger">*</small></label>
-                                        <select name="author_id" id="author_id" class="form-control select2"  >
+                                        <select name="author_id" id="author_id" class="form-control">
                                             <option  disabled>Select One</option>
                                             @foreach($authors as $item)
                                                 <option value="{{ $item->id }}" @if($item->id == $book->author_id ) selected @endif>{{ $item->name }}</option>

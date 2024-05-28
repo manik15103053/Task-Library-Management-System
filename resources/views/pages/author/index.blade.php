@@ -9,7 +9,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="title float-left">All Author</h4>
+                        @can('author.create')
                         <a class="btn btn-info float-right" href="{{ route('author.create') }}">Add New</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -31,8 +33,12 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->bio }}</td>
                                             <td>
-                                                <a href="{{ route('author.edit',$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit text-white"></i></a>
-                                                <a href="{{ route('author.delete',$item->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash text-white" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @can('author.edit')
+                                                <a href="{{ route('author.edit',$item->id) }}" class=""><i class="fa fa-edit text-success"></i></a>
+                                                @endcan
+                                                @can('author.delete')
+                                                <a href="{{ route('author.delete',$item->id) }}" class=""><i class="fa fa-trash text-danger" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Member <small class="text-danger">*</small></label>
-                                        <select name="member_id" id="member_id" class="form-control select2"  >
+                                        <select name="member_id" id="member_id" class="form-control "  >
                                             <option  disabled>Select One</option>
                                             @foreach($members as $item)
                                                 <option value="{{ $item->id }}">{{ $item->first_name }} {{ $item->last_name }}</option>
@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Book <small class="text-danger">*</small></label>
-                                        <select name="book_id" id="book_id" class="form-control select2"  >
+                                        <select name="book_id" id="book_id" class="form-control "  >
                                             <option  disabled>Select One</option>
                                             @foreach($books as $item)
                                                 <option value="{{ $item->id }}">{{ $item->title }}</option>

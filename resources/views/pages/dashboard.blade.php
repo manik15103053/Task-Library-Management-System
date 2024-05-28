@@ -9,29 +9,27 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4>{{ $total_category ?? "00" }}</h4>
-                            <p>Total Category</p>
+                            <h4>{{ $total_book ?? "00" }}</h4>
+                            <p>Total Book</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4>{{ $total_blog ?? "00" }}</h4>
-                            <p>Total Blog</p>
+                            <h4>{{ $total_author ?? "00" }}</h4>
+                            <p>Total Author</p>
                         </div>
                     </div>
                 </div>
-                @if(Auth::user()->user_role == 1)
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4>{{ $total_user ?? "00" }}</h4>
-                            <p>Total User</p>
+                            <h4>{{ $total_member ?? "00" }}</h4>
+                            <p>Total Member</p>
                         </div>
                     </div>
                 </div>
-                @endif
             </div>
         </div>
     </div>

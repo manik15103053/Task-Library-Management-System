@@ -19,6 +19,11 @@ class BorrowController extends Controller
     public function __construct(BorrowRepositories $Borrow)
     {
             $this->Borrow = $Borrow;
+
+            $this->middleware('can:borrow.index')->only(['index']);
+            $this->middleware('can:borrow.create')->only(['create', 'store']);
+            $this->middleware('can:borrow.edit')->only(['edit', 'update']);
+            $this->middleware('can:borrow.delete')->only(['delete']);
     }
 
     //Show all Borrows in read operation

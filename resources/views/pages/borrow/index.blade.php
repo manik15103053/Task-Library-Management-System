@@ -14,7 +14,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="title float-left">All List</h4>
+                        @can('borrow.create')
                         <a class="btn btn-info float-right" href="{{ route('borrow.create') }}">Add New</a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -37,19 +39,23 @@
                                     @foreach($borrows as $key=> $item)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td>{{ $item->member->first_name }} {{ $item->member->last_name }}</td>
-                                            <td>{{ $item->member->phone }}</td>
-                                            <td>{{ $item->book->title }}</td>
-                                            <td>{{ $item->borrow_date }}</td>
-                                            <td>{{ $item->return_date }}</td>
+                                            <td>{{ $item->member->first_name ?? "" }} {{ $item->member->last_name?? "" }}</td>
+                                            <td>{{ $item->member->phone ?? "" }}</td>
+                                            <td>{{ $item->book->title ?? "" }}</td>
+                                            <td>{{ date('d M Y',strtotime($item->borrow_date)) }}</td>
+                                            <td>{{ date('d M Y',strtotime($item->return_date)) }}</td>
                                             <td>{{ $item->status }}</td>
                                             <td>
                                                 @if($item->status=='Returned')
-                                                <a disabled class="btn btn-disable btn-sm"><i class="fa fa-edit text-white"></i></a>
+                                                <a disabled class=""><i class="fa fa-edit text-success"></i></a>
                                                 @else
-                                                <a href="{{ route('borrow.edit',$item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit text-white"></i></a>
+                                                @can('borrow.edit')
+                                                <a href="{{ route('borrow.edit',$item->id) }}" class=""><i class="fa fa-edit text-success"></i></a>
+                                                @endcan
                                                 @endif
-                                                <a href="{{ route('borrow.delete',$item->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash text-white" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @can('borrow.delete')
+                                                <a href="{{ route('borrow.delete',$item->id) }}" class=""><i class="fa fa-trash text-danger" onclick="return confirm('Are Yor sure! you went to delete this item..?')"></i></a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
